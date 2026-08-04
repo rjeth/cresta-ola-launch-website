@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cresta Ola — About Us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EDE4D3;
+    --panel:#F6F0E5;
+    --panel-2:#E9DFCB;
+    --cyan:#A8763C;
+    --cyan-dim:rgba(168,118,60,0.14);
+    --cyan-glow:rgba(168,118,60,0.35);
+    --amber:#7C8A5E;
+    --amber-glow:rgba(124,138,94,0.35);
+    --text:#241F1A;
+    --text-dim:#6B5F52;
+    --text-faint:#9C9080;
+    --line:rgba(36,31,26,0.12);
+    --line-strong:rgba(36,31,26,0.22);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 85% 0%, rgba(168,118,60,0.10), transparent 40%),
+      radial-gradient(circle at 0% 60%, rgba(168,118,60,0.06), transparent 35%),
+      linear-gradient(rgba(36,31,26,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,31,26,0.045) 1px, transparent 1px);
+    background-size:auto, auto, 42px 42px, 42px 42px;
+    background-position:0 0, 0 0, -1px -1px, -1px -1px;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;
+    text-transform:uppercase;font-weight:500;color:var(--cyan);
+    display:flex;align-items:center;gap:9px;
+  }
+  .eyebrow .dot{
+    width:6px;height:6px;border-radius:50%;background:var(--cyan);
+    box-shadow:0 0 8px var(--cyan-glow);animation:pulse 2s ease-in-out infinite;flex-shrink:0;
+  }
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:600;line-height:1.12;letter-spacing:-0.01em;}
+  .accent{color:var(--cyan);}
+
+  .hud{position:relative;}
+  .hud::before,.hud::after,.hud .c1,.hud .c2{
+    content:'';position:absolute;width:14px;height:14px;border-color:var(--cyan);border-style:solid;opacity:0.55;
+  }
+  .hud::before{top:-1px;left:-1px;border-width:1.5px 0 0 1.5px;}
+  .hud::after{bottom:-1px;right:-1px;border-width:0 1.5px 1.5px 0;}
+  .hud .c1{top:-1px;right:-1px;border-width:1.5px 1.5px 0 0;}
+  .hud .c2{bottom:-1px;left:-1px;border-width:0 0 1.5px 1.5px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;background:rgba(237,228,211,0.88);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1180px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;color:var(--text);}
+  .logo svg{width:22px;height:22px;flex-shrink:0;}
+  .status-chip{display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--text-dim);margin-left:18px;padding-left:18px;border-left:1px solid var(--line-strong);}
+  .status-chip .dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan-glow);animation:pulse 2s ease-in-out infinite;}
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{color:var(--text-dim);font-size:14px;font-weight:500;transition:color .2s ease;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-links a.current{color:var(--text);}
+  .nav-cta{background:var(--cyan);color:var(--bg)!important;padding:9px 18px;border-radius:2px;font-size:13px;font-weight:600;transition:box-shadow .2s ease;}
+  .nav-cta:hover{box-shadow:0 0 18px var(--cyan-glow);}
+  .menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;}
+
+  /* PAGE HERO */
+  .page-hero{padding:90px 0 80px;border-bottom:1px solid var(--line);}
+  .page-hero h1{font-size:clamp(34px,5vw,54px);max-width:16ch;margin:20px 0 22px;}
+  .page-hero p{font-size:17px;color:var(--text-dim);max-width:60ch;}
+
+  /* PROFILE */
+  .profile{padding:100px 0;border-bottom:1px solid var(--line);}
+  .profile .wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;align-items:start;}
+  .profile h2{font-size:30px;margin:16px 0 20px;max-width:16ch;}
+  .profile p{color:var(--text-dim);font-size:16px;margin-bottom:16px;max-width:52ch;}
+  .stats{display:flex;flex-direction:column;gap:16px;}
+  .stat{position:relative;padding:22px 24px;background:var(--panel);border:1px solid var(--line);}
+  .stat .num{font-family:'JetBrains Mono',monospace;font-size:28px;color:var(--cyan);font-weight:600;}
+  .stat .label{font-size:12px;color:var(--text-dim);margin-top:6px;font-family:'JetBrains Mono',monospace;letter-spacing:0.03em;}
+
+  /* VISION / MISSION */
+  .vm{padding:100px 0;border-bottom:1px solid var(--line);}
+  .vm-head{max-width:56ch;margin-bottom:48px;}
+  .vm-head h2{font-size:30px;margin-top:16px;}
+  .vm-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .vm-card{position:relative;background:var(--panel);border:1px solid var(--line);padding:34px 30px;}
+  .vm-card .tag{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.08em;color:var(--cyan);margin-bottom:16px;display:block;text-transform:uppercase;}
+  .vm-card h3{font-size:22px;margin-bottom:14px;}
+  .vm-card p{color:var(--text-dim);font-size:15px;}
+
+  /* CORE VALUES */
+  .values{padding:100px 0;border-bottom:1px solid var(--line);}
+  .values-head{max-width:56ch;margin-bottom:48px;}
+  .values-head h2{font-size:30px;margin-top:16px;}
+  .value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .value-card{background:var(--panel);border:1px solid var(--line);padding:28px 22px;transition:border-color .2s ease;}
+  .value-card:hover{border-color:var(--line-strong);}
+  .value-card .node{width:34px;height:34px;border:1px solid var(--line-strong);display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .value-card .node svg{width:16px;height:16px;color:var(--cyan);}
+  .value-card h4{font-size:16.5px;font-weight:600;margin-bottom:8px;font-family:'Space Grotesk',sans-serif;}
+  .value-card p{font-size:13.5px;color:var(--text-dim);}
+
+  /* HISTORY */
+  .history{padding:100px 0;border-bottom:1px solid var(--line);}
+  .history-head{max-width:56ch;margin-bottom:56px;}
+  .history-head h2{font-size:30px;margin-top:16px;}
+  .history-timeline{position:relative;padding-left:44px;max-width:70ch;}
+  .history-timeline::before{content:'';position:absolute;left:9px;top:6px;bottom:6px;width:1px;background:var(--line-strong);}
+  .history-item{position:relative;padding-bottom:44px;}
+  .history-item:last-child{padding-bottom:0;}
+  .history-item::before{
+    content:'';position:absolute;left:-44px;top:2px;width:11px;height:11px;
+    border:2px solid var(--amber);background:var(--bg);border-radius:50%;box-shadow:0 0 8px var(--amber-glow);
+  }
+  .history-item.current::before{border-color:var(--cyan);box-shadow:0 0 8px var(--cyan-glow);}
+  .history-item .year{font-family:'JetBrains Mono',monospace;color:var(--amber);font-size:13px;margin-bottom:8px;letter-spacing:0.04em;}
+  .history-item.current .year{color:var(--cyan);}
+  .history-item h4{font-size:19px;margin-bottom:8px;}
+  .history-item p{color:var(--text-dim);font-size:14.5px;max-width:58ch;}
+
+  /* MANAGEMENT TEAM */
+  .team{padding:100px 0;border-bottom:1px solid var(--line);}
+  .team-head{max-width:60ch;margin-bottom:32px;}
+  .team-head h2{font-size:30px;margin-top:16px;}
+  .notice{
+    display:flex;align-items:flex-start;gap:14px;
+    background:rgba(124,138,94,0.06);border:1px dashed rgba(124,138,94,0.35);
+    padding:18px 22px;margin-bottom:44px;
+  }
+  .notice svg{width:18px;height:18px;color:var(--amber);flex-shrink:0;margin-top:2px;}
+  .notice p{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--amber);letter-spacing:0.02em;line-height:1.6;}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .team-card{background:var(--panel);border:1px dashed var(--line-strong);padding:22px;text-align:center;}
+  .avatar-placeholder{
+    width:100%;aspect-ratio:1;background:var(--panel-2);border:1px dashed var(--line-strong);
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .avatar-placeholder svg{width:28px;height:28px;color:var(--text-faint);}
+  .team-card .name{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-dim);margin-bottom:4px;}
+  .team-card .role{font-size:12px;color:var(--text-faint);}
+
+  /* CTA */
+  .cta-band{padding:110px 0;text-align:center;}
+  .cta-band .eyebrow{justify-content:center;margin-bottom:20px;}
+  .cta-band h2{font-size:clamp(30px,4.2vw,44px);max-width:18ch;margin:0 auto 18px;}
+  .cta-band p{color:var(--text-dim);max-width:44ch;margin:0 auto 34px;font-size:16px;}
+  .btn-primary{background:var(--cyan);color:var(--bg);padding:14px 26px;border-radius:2px;font-weight:600;font-size:14px;display:inline-block;transition:box-shadow .2s ease;font-family:'Inter',sans-serif;}
+  .btn-primary:hover{box-shadow:0 0 22px var(--cyan-glow);}
+  .contact-strip{display:inline-flex;flex-direction:column;gap:10px;margin-top:44px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-dim);background:var(--panel);border:1px solid var(--line);padding:22px 28px;}
+  .contact-strip .k{color:var(--text-faint);}
+  .contact-strip .v{color:var(--cyan);}
+
+  /* FOOTER */
+  footer{padding:36px 0;border-top:1px solid var(--line);}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-logo{font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);}
+  .footer-links{display:flex;gap:24px;font-size:13px;color:var(--text-dim);}
+  .footer-links a:hover{color:var(--text);}
+
+  @media (max-width: 860px){
+    .nav-links{position:fixed;top:64px;left:0;right:0;background:var(--bg);flex-direction:column;padding:24px 32px;gap:22px;transform:translateY(-120%);transition:transform .25s ease;border-bottom:1px solid var(--line);}
+    .nav-links.open{transform:translateY(0);}
+    .menu-toggle{display:block;}
+    .status-chip{display:none;}
+    .profile .wrap{grid-template-columns:1fr;gap:40px;}
+    .vm-grid{grid-template-columns:1fr;}
+    .value-grid{grid-template-columns:1fr 1fr;}
+    .team-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width: 520px){
+    .value-grid{grid-template-columns:1fr;}
+    .team-grid{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .eyebrow .dot,.status-chip .dot{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 16L7 10L12 16L17 6L22 12" stroke="#A8763C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Cresta Ola
+      <span class="status-chip"><span class="dot"></span>SYSTEMS SECURE</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html" class="current">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="contact.html" class="nav-cta">Get in touch</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>About Us</div>
+    <h1>A group built by paying <span class="accent">attention</span>.</h1>
+    <p>Cresta Ola operates across real estate, accounting, and cybersecurity. What holds the three together isn't the industry — it's the habit of noticing when something is about to change, and being ready before it does.</p>
+  </div>
+</section>
+
+<section class="profile">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>Company profile</div>
+      <h2>One group, three specialist divisions.</h2>
+      <p>Cresta Ola is a diversified group of companies based in the Philippines. What began as a real estate practice — sourcing, leasing, and managing property — has grown into three distinct but connected disciplines, each run by specialists and held to the same standard of care.</p>
+      <p>Today the group serves clients who need more than one kind of expertise, without having to coordinate three separate vendors to get it.</p>
+    </div>
+    <div class="stats">
+      <div class="stat hud"><span class="c1"></span><span class="c2"></span>
+        <div class="num">[XX]</div>
+        <div class="label">YEARS OPERATING</div>
+      </div>
+      <div class="stat hud"><span class="c1"></span><span class="c2"></span>
+        <div class="num">03</div>
+        <div class="label">DISCIPLINES UNDER ONE GROUP</div>
+      </div>
+      <div class="stat hud"><span class="c1"></span><span class="c2"></span>
+        <div class="num">[XX]</div>
+        <div class="label">TEAM MEMBERS ACROSS THE GROUP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vm">
+  <div class="wrap">
+    <div class="vm-head">
+      <div class="eyebrow"><span class="dot"></span>Vision &amp; mission</div>
+      <h2>Why the group exists, and what it's building toward.</h2>
+    </div>
+    <div class="vm-grid">
+      <div class="vm-card hud"><span class="c1"></span><span class="c2"></span>
+        <span class="tag">// Vision</span>
+        <h3>To be the group Philippine businesses call first.</h3>
+        <p>Regardless of which discipline the problem sits in — a property, a ledger, or a network — Cresta Ola aims to be the first call a client makes, and the group that already has the right people in the room.</p>
+      </div>
+      <div class="vm-card hud"><span class="c1"></span><span class="c2"></span>
+        <span class="tag">// Mission</span>
+        <h3>The same rigor, in every division.</h3>
+        <p>To bring the same discretion, responsiveness, and standard of work to real estate, accounting, and cybersecurity alike — so clients get specialist-level service without vendor fragmentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="wrap">
+    <div class="values-head">
+      <div class="eyebrow"><span class="dot"></span>Core values</div>
+      <h2>What the same standard actually means.</h2>
+    </div>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="node"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/></svg></div>
+        <h4>Vigilance</h4>
+        <p>We watch for the shift before it becomes a problem — in a market, a ledger, or a network.</p>
+      </div>
+      <div class="value-card">
+        <div class="node"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        <h4>Discretion</h4>
+        <p>Property details, financial records, network data — handled under the same confidentiality, always.</p>
+      </div>
+      <div class="value-card">
+        <div class="node"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16c2 0 2-6 4-6s2 6 4 6 2-6 4-6 2 6 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h4>Adaptability</h4>
+        <p>The group grew by responding to what clients actually needed next, not by sticking to one lane.</p>
+      </div>
+      <div class="value-card">
+        <div class="node"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <h4>Accountability</h4>
+        <p>Every division answers to the same client relationship — no handing off blame between teams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="history">
+  <div class="wrap">
+    <div class="history-head">
+      <div class="eyebrow"><span class="dot"></span>Company history</div>
+      <h2>How three disciplines became one group.</h2>
+    </div>
+    <div class="history-timeline">
+      <div class="history-item">
+        <div class="year">[20XX] — FOUNDED</div>
+        <h4>Real estate, from the ground up</h4>
+        <p>Cresta Ola opened as a real estate practice, sourcing, leasing, and managing property for clients across the region.</p>
+      </div>
+      <div class="history-item">
+        <div class="year">[20XX] — EXPANDED</div>
+        <h4>Accounting joins the group</h4>
+        <p>As property clients asked for cleaner books and reliable reporting, the group brought accounting in-house rather than referring the work out.</p>
+      </div>
+      <div class="history-item current">
+        <div class="year">[20XX] — CURRENT</div>
+        <h4>Cybersecurity becomes the newest division</h4>
+        <p>Recognizing that every client, in every discipline, now depends on a secure network, Cresta Ola launched its cybersecurity division — products and solutions built to protect the data the other two divisions were already trusted with.</p>
+      </div>
+      <div class="history-item">
+        <div class="year">TODAY</div>
+        <h4>Three disciplines, one group</h4>
+        <p>Cresta Ola now operates real estate, accounting, and cybersecurity as distinct divisions under a single standard of care and a single point of contact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="wrap">
+    <div class="team-head">
+      <div class="eyebrow"><span class="dot"></span>Management team</div>
+      <h2>The people leading each division.</h2>
+    </div>
+    <div class="notice">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 16.5h.01M10.3 4.5L2.8 17.5A1.5 1.5 0 0 0 4.1 20h15.8a1.5 1.5 0 0 0 1.3-2.5L13.7 4.5a1.5 1.5 0 0 0-2.6 0z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p>PENDING CLIENT CONFIRMATION — replace placeholder cards below with finalized names, titles, and headshots before this section goes live. Client has not yet confirmed whether to publish management team details.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar-placeholder"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        <div class="name">[Name]</div>
+        <div class="role">[Title — Real Estate]</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar-placeholder"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        <div class="name">[Name]</div>
+        <div class="role">[Title — Accounting]</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar-placeholder"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        <div class="name">[Name]</div>
+        <div class="role">[Title — Cybersecurity]</div>
+      </div>
+      <div class="team-card">
+        <div class="avatar-placeholder"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="currentColor" stroke-width="1.6"/></svg></div>
+        <div class="name">[Name]</div>
+        <div class="role">[Title — Group]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>Get in touch</div>
+    <h2>Ready when the tide turns.</h2>
+    <p>Whether it's a property, a ledger, or a network — tell us what changed, and which division should hear about it first.</p>
+    <a href="contact.html" class="btn-primary">Send an inquiry</a>
+    <div class="contact-strip">
+      <div><span class="k">PHONE:</span> <span class="v">[Phone Number]</span></div>
+      <div><span class="k">EMAIL:</span> <span class="v">[Email Address]</span></div>
+      <div><span class="k">OFFICE:</span> <span class="v">[Office Address]</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-logo">Cresta Ola</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+</script>
+
+</body>
+</html>
