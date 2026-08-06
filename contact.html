@@ -6,185 +6,145 @@
 <title>Cresta Ola — Contact Us</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#EDE4D3;
-    --panel:#F6F0E5;
-    --panel-2:#E9DFCB;
-    --cyan:#A8763C;
-    --cyan-dim:rgba(168,118,60,0.14);
-    --cyan-glow:rgba(168,118,60,0.35);
-    --amber:#7C8A5E;
-    --amber-glow:rgba(124,138,94,0.35);
-    --text:#241F1A;
-    --text-dim:#6B5F52;
-    --text-faint:#9C9080;
-    --line:rgba(36,31,26,0.12);
-    --line-strong:rgba(36,31,26,0.22);
+    --white:#0B0F0D; --band:#141A17; --ink:#F2F5F1; --ink-dim:#9AA69E; --ink-faint:#62706A;
+    --blue:#3654D6; --gold:#D9AE55; --line:rgba(242,245,241,0.10); --line-strong:rgba(242,245,241,0.18);
   }
-
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-
-  body{
-    font-family:'Inter',sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-    background-image:
-      radial-gradient(circle at 85% 0%, rgba(168,118,60,0.10), transparent 40%),
-      radial-gradient(circle at 0% 60%, rgba(168,118,60,0.06), transparent 35%),
-      linear-gradient(rgba(36,31,26,0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(36,31,26,0.045) 1px, transparent 1px);
-    background-size:auto, auto, 42px 42px, 42px 42px;
-    background-position:0 0, 0 0, -1px -1px, -1px -1px;
-  }
-
+  body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   a{color:inherit;text-decoration:none;}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+  h1,h2{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.06;letter-spacing:-0.02em;}
 
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;
-    text-transform:uppercase;font-weight:500;color:var(--cyan);
-    display:flex;align-items:center;gap:9px;
-  }
-  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan-glow);animation:pulse 2s ease-in-out infinite;flex-shrink:0;}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+  .orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:-1;opacity:0.30;}
+  .orb-a{width:520px;height:520px;background:var(--blue);top:-180px;right:-140px;animation:drift1 24s ease-in-out infinite alternate;}
+  .orb-b{width:420px;height:420px;background:var(--gold);bottom:-160px;left:-120px;animation:drift2 28s ease-in-out infinite alternate;}
+  @keyframes drift1{0%{transform:translate(0,0) scale(1);}100%{transform:translate(-50px,70px) scale(1.12);}}
+  @keyframes drift2{0%{transform:translate(0,0) scale(1);}100%{transform:translate(60px,-50px) scale(1.15);}}
 
-  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:600;line-height:1.12;letter-spacing:-0.01em;}
-  .accent{color:var(--cyan);}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
 
-  .hud{position:relative;}
-  .hud::before,.hud::after,.hud .c1,.hud .c2{content:'';position:absolute;width:14px;height:14px;border-color:var(--cyan);border-style:solid;opacity:0.55;}
-  .hud::before{top:-1px;left:-1px;border-width:1.5px 0 0 1.5px;}
-  .hud::after{bottom:-1px;right:-1px;border-width:0 1.5px 1.5px 0;}
-  .hud .c1{top:-1px;right:-1px;border-width:1.5px 1.5px 0 0;}
-  .hud .c2{bottom:-1px;left:-1px;border-width:0 0 1.5px 1.5px;}
+  .eyebrow{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--blue);}
+  .eyebrow .rule{width:26px;height:1.5px;background:var(--blue);display:inline-block;flex-shrink:0;}
 
-  /* NAV */
-  header{position:sticky;top:0;z-index:50;background:rgba(237,228,211,0.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1180px;margin:0 auto;}
-  .logo{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;color:var(--text);}
-  .logo svg{width:22px;height:22px;flex-shrink:0;}
-  .status-chip{display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--text-dim);margin-left:18px;padding-left:18px;border-left:1px solid var(--line-strong);}
-  .status-chip .dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan-glow);animation:pulse 2s ease-in-out infinite;}
-  .nav-links{display:flex;gap:34px;align-items:center;}
-  .nav-links a{color:var(--text-dim);font-size:14px;font-weight:500;transition:color .2s ease;}
-  .nav-links a:hover{color:var(--text);}
-  .nav-links a.current{color:var(--text);}
-  .nav-cta{background:var(--cyan);color:var(--bg)!important;padding:9px 18px;border-radius:2px;font-size:13px;font-weight:600;transition:box-shadow .2s ease;}
-  .nav-cta:hover{box-shadow:0 0 18px var(--cyan-glow);}
-  .menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;}
+  header{position:sticky;top:0;z-index:50;background:rgba(11,15,13,0.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 40px;max-width:1180px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.01em;color:var(--ink);}
+  .logo svg{width:24px;height:24px;flex-shrink:0;}
+  .nav-links{display:flex;gap:40px;align-items:center;}
+  .nav-links a{position:relative;font-size:14.5px;font-weight:500;color:var(--ink-dim);transition:color .2s ease;padding-bottom:3px;}
+  .nav-links a::after{content:'';position:absolute;left:0;right:100%;bottom:0;height:1.5px;background:var(--blue);transition:right .25s ease;}
+  .nav-links a:hover,.nav-links a.current{color:var(--ink);}
+  .nav-links a:hover::after,.nav-links a.current::after{right:0;}
+  .nav-cta{background:var(--ink);color:var(--white)!important;padding:11px 22px;border-radius:2px;font-weight:600;font-size:13.5px;transition:background .2s ease,transform .2s ease,box-shadow .2s ease;}
+  .nav-cta::after{display:none;}
+  .nav-cta:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 8px 20px rgba(54,84,214,0.35);}
+  .menu-toggle{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);}
 
-  /* PAGE HERO */
-  .page-hero{padding:90px 0 70px;border-bottom:1px solid var(--line);}
-  .page-hero h1{font-size:clamp(34px,5vw,54px);max-width:16ch;margin:20px 0 22px;}
-  .page-hero p{font-size:17px;color:var(--text-dim);max-width:60ch;}
+  .page-hero{padding:130px 0 70px;text-align:center;}
+  .page-hero .eyebrow{justify-content:center;}
+  .page-hero h1{font-size:clamp(36px,5.2vw,60px);max-width:18ch;margin:24px auto 24px;}
+  .page-hero em{font-style:normal;background:linear-gradient(100deg,var(--blue) 20%,var(--gold) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .page-hero p{font-size:18px;color:var(--ink-dim);max-width:60ch;margin:0 auto;}
 
-  /* MAIN GRID: form + info */
-  .contact-main{padding:90px 0;border-bottom:1px solid var(--line);}
-  .contact-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:40px;align-items:start;}
+  .contact-main{padding:80px 0 110px;border-top:1px solid var(--line);}
+  .contact-grid{display:grid;grid-template-columns:1.25fr 0.75fr;gap:80px;align-items:start;}
 
-  .panel{background:var(--panel);border:1px solid var(--line);padding:36px;}
-  .panel-label{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:24px;display:block;}
-
-  form{display:flex;flex-direction:column;gap:20px;}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-  .field{display:flex;flex-direction:column;gap:8px;}
-  .field label{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-dim);}
+  .form-label{font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:28px;display:block;}
+  form{display:flex;flex-direction:column;gap:28px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .field{display:flex;flex-direction:column;gap:9px;}
+  .field label{font-size:12.5px;font-weight:600;color:var(--ink-dim);}
   .field input,.field select,.field textarea{
-    background:var(--panel-2);border:1px solid var(--line-strong);color:var(--text);
-    padding:12px 14px;font-family:'Inter',sans-serif;font-size:14px;border-radius:2px;
-    outline:none;transition:border-color .2s ease, box-shadow .2s ease;
+    border:none;border-bottom:1.5px solid var(--line-strong);background:transparent;color:var(--ink);
+    padding:10px 2px;font-family:'Inter',sans-serif;font-size:15px;outline:none;
+    transition:border-color .2s ease;
   }
-  .field input:focus,.field select:focus,.field textarea:focus{
-    border-color:var(--cyan);box-shadow:0 0 0 3px var(--cyan-dim);
-  }
-  .field textarea{resize:vertical;min-height:120px;font-family:'Inter',sans-serif;}
-  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B5F52' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 4px 12px -6px rgba(54,84,214,0.5);}
+  .field textarea{resize:vertical;min-height:110px;}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239AA69E' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 2px center;background-size:16px;}
   .submit-btn{
-    background:var(--cyan);color:var(--bg);border:none;padding:14px 26px;font-weight:600;
-    font-size:14px;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif;
-    transition:box-shadow .2s ease;align-self:flex-start;
+    background:var(--ink);color:var(--white);border:none;padding:15px 28px;font-weight:600;
+    font-size:14.5px;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif;
+    transition:background .2s ease,transform .2s ease,box-shadow .2s ease;align-self:flex-start;
   }
-  .submit-btn:hover{box-shadow:0 0 22px var(--cyan-glow);}
-  .form-note{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text-faint);margin-top:-6px;}
+  .submit-btn:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 10px 26px rgba(54,84,214,0.4);}
+  .form-note{font-size:12.5px;color:var(--ink-faint);margin-top:-10px;}
 
-  .info-block{margin-bottom:30px;}
+  .info-block{margin-bottom:34px;}
   .info-block:last-child{margin-bottom:0;}
-  .info-block .ib-label{display:flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
-  .info-block .ib-label svg{width:14px;height:14px;color:var(--cyan);}
-  .info-block .ib-value{font-size:15px;color:var(--text);}
-  .info-block .ib-value.mono{font-family:'JetBrains Mono',monospace;font-size:14px;}
-  .phone-list{display:flex;flex-direction:column;gap:6px;}
-  .phone-list .row{display:flex;justify-content:space-between;gap:16px;font-family:'JetBrains Mono',monospace;font-size:13.5px;}
-  .phone-list .row .k{color:var(--text-faint);}
-  .phone-list .row .v{color:var(--cyan);}
-  .hours-table{display:flex;flex-direction:column;gap:6px;font-family:'JetBrains Mono',monospace;font-size:13.5px;}
+  .info-block .ib-label{font-size:12px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px;}
+  .info-block .ib-value{font-size:16px;color:var(--ink);}
+  .phone-list{display:flex;flex-direction:column;gap:8px;}
+  .phone-list .row{display:flex;justify-content:space-between;gap:16px;font-size:14.5px;}
+  .phone-list .row .k{color:var(--ink-faint);}
+  .phone-list .row .v{color:var(--ink);font-weight:500;}
+  .hours-table{display:flex;flex-direction:column;gap:8px;font-size:14.5px;}
   .hours-table .row{display:flex;justify-content:space-between;}
-  .hours-table .row .k{color:var(--text-dim);}
-  .hours-table .row .v{color:var(--text);}
-  .divider{height:1px;background:var(--line);margin:26px 0;}
-
-  .social-row{display:flex;gap:12px;}
-  .social-row a{
-    width:38px;height:38px;border:1px solid var(--line-strong);display:flex;align-items:center;
-    justify-content:center;transition:border-color .2s ease, color .2s ease;color:var(--text-dim);
-  }
-  .social-row a:hover{border-color:var(--cyan);color:var(--cyan);}
+  .hours-table .row .k{color:var(--ink-dim);}
+  .hours-table .row .v{color:var(--ink);font-weight:500;}
+  .divider{height:1px;background:var(--line);margin:30px 0;}
+  .social-row{display:flex;gap:14px;}
+  .social-row a{width:38px;height:38px;border:1px solid var(--line-strong);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color .2s ease,color .2s ease,transform .2s ease;color:var(--ink-dim);}
+  .social-row a:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-3px);}
   .social-row svg{width:16px;height:16px;}
 
-  /* MAP */
-  .map-section{padding:90px 0;}
-  .map-head{max-width:56ch;margin-bottom:36px;}
-  .map-head h2{font-size:28px;margin-top:16px;}
-  .map-frame{
-    position:relative;height:380px;background:var(--panel);border:1px solid var(--line);
-    background-image:
-      linear-gradient(rgba(36,31,26,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(36,31,26,0.06) 1px, transparent 1px);
-    background-size:30px 30px;
-    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
-  }
-  .map-frame .pin{width:34px;height:34px;color:var(--cyan);filter:drop-shadow(0 0 8px var(--cyan-glow));}
-  .map-frame .readout{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-faint);letter-spacing:0.06em;text-align:center;}
-  .map-frame .readout strong{color:var(--amber);}
+  .map-section{padding:100px 0;border-top:1px solid var(--line);}
+  .map-head{max-width:56ch;margin-bottom:40px;}
+  .map-head h2{font-size:clamp(26px,3.2vw,36px);margin-top:20px;}
+  .map-frame{position:relative;height:340px;background:var(--band);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;border:1px solid var(--line);}
+  .map-frame .pin{width:30px;height:30px;color:var(--blue);}
+  .map-frame .readout{font-size:13px;color:var(--ink-faint);text-align:center;max-width:44ch;}
+  .map-frame .readout strong{color:var(--gold);}
 
-  /* CTA/footer reuse */
-  footer{padding:36px 0;border-top:1px solid var(--line);}
-  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
-  .footer-logo{font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);}
-  .footer-links{display:flex;gap:24px;font-size:13px;color:var(--text-dim);}
-  .footer-links a:hover{color:var(--text);}
+  footer{padding:56px 0;border-top:1px solid var(--line);}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+  .footer-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;}
+  .footer-links{display:flex;gap:30px;font-size:14px;color:var(--ink-dim);}
+  .footer-links a:hover{color:var(--ink);}
 
-  @media (max-width: 900px){
-    .contact-grid{grid-template-columns:1fr;}
-  }
+  .footer-newsletter{border-bottom:1px solid var(--line);padding:56px 0;}
+  .fn-row{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;}
+  .fn-copy h3{font-size:20px;margin-bottom:6px;}
+  .fn-copy p{font-size:14px;color:var(--ink-dim);}
+  .fn-form{display:flex;gap:10px;flex-wrap:wrap;}
+  .fn-form input{background:var(--band);border:1px solid var(--line-strong);color:var(--ink);padding:12px 16px;font-family:'Inter',sans-serif;font-size:14px;border-radius:2px;outline:none;min-width:240px;transition:border-color .2s ease;}
+  .fn-form input:focus{border-color:var(--blue);}
+  .fn-form button{background:var(--ink);color:var(--white);border:none;padding:12px 22px;font-weight:600;font-size:13.5px;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s ease,transform .2s ease;}
+  .fn-form button:hover{background:var(--blue);transform:translateY(-2px);}
+
+  .cookie-banner{position:fixed;left:24px;right:24px;bottom:24px;max-width:640px;margin:0 auto;z-index:100;background:var(--band);border:1px solid var(--line-strong);padding:22px 26px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;box-shadow:0 20px 50px rgba(0,0,0,0.35);transform:translateY(160%);transition:transform .5s ease .6s;}
+  .cookie-banner.show{transform:translateY(0);}
+  .cookie-banner p{font-size:13.5px;color:var(--ink-dim);flex:1;min-width:220px;}
+  .cookie-banner .cb-actions{display:flex;gap:10px;}
+  .cb-btn{padding:10px 18px;border-radius:2px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s ease;border:1px solid var(--line-strong);background:transparent;color:var(--ink-dim);font-family:'Inter',sans-serif;}
+  .cb-btn.primary{background:var(--ink);color:var(--white);border-color:var(--ink);}
+  .cb-btn.primary:hover{background:var(--blue);border-color:var(--blue);}
+  .cb-btn:hover{color:var(--ink);border-color:var(--line-strong);}
+
+  @media (max-width: 900px){ .contact-grid{grid-template-columns:1fr;gap:56px;} }
   @media (max-width: 860px){
-    .nav-links{position:fixed;top:64px;left:0;right:0;background:var(--bg);flex-direction:column;padding:24px 32px;gap:22px;transform:translateY(-120%);transition:transform .25s ease;border-bottom:1px solid var(--line);}
+    .nav-links{position:fixed;top:66px;left:0;right:0;background:var(--white);flex-direction:column;padding:26px 40px;gap:22px;transform:translateY(-120%);transition:transform .25s ease;border-bottom:1px solid var(--line);}
     .nav-links.open{transform:translateY(0);}
     .menu-toggle{display:block;}
-    .status-chip{display:none;}
     .form-row{grid-template-columns:1fr;}
-    .panel{padding:26px;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .eyebrow .dot,.status-chip .dot{animation:none;}
   }
 </style>
 </head>
 <body>
 
+<div class="orb orb-a"></div>
+<div class="orb orb-b"></div>
+
 <header>
   <nav>
     <a href="index.html" class="logo">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 16L7 10L12 16L17 6L22 12" stroke="#A8763C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,6 87,28 87,72 50,94 13,72 13,28" fill="none" stroke="#3654D6" stroke-width="6"/></svg>
       Cresta Ola
-      <span class="status-chip"><span class="dot"></span>SYSTEMS SECURE</span>
     </a>
     <div class="nav-links" id="navLinks">
       <a href="about.html">About Us</a>
@@ -198,8 +158,8 @@
 
 <section class="page-hero">
   <div class="wrap">
-    <div class="eyebrow"><span class="dot"></span>Contact Us</div>
-    <h1>Tell us what changed, and <span class="accent">where</span>.</h1>
+    <div class="eyebrow"><span class="rule"></span>Contact Us</div>
+    <h1>Tell us what changed, and <em>where</em>.</h1>
     <p>Whether it's a property, a set of books, or a network, one form reaches the right division. No need to guess which team to email.</p>
   </div>
 </section>
@@ -208,25 +168,15 @@
   <div class="wrap">
     <div class="contact-grid">
 
-      <div class="panel hud">
-        <span class="c1"></span><span class="c2"></span>
-        <span class="panel-label">// Send an inquiry</span>
+      <div class="reveal">
+        <span class="form-label">Send an inquiry</span>
         <form action="#" method="POST">
           <div class="form-row">
-            <div class="field">
-              <label for="name">Full name</label>
-              <input type="text" id="name" name="name" required>
-            </div>
-            <div class="field">
-              <label for="email">Email address</label>
-              <input type="email" id="email" name="email" required>
-            </div>
+            <div class="field"><label for="name">Full name</label><input type="text" id="name" name="name" required></div>
+            <div class="field"><label for="email">Email address</label><input type="email" id="email" name="email" required></div>
           </div>
           <div class="form-row">
-            <div class="field">
-              <label for="phone">Phone number</label>
-              <input type="tel" id="phone" name="phone">
-            </div>
+            <div class="field"><label for="phone">Phone number</label><input type="tel" id="phone" name="phone"></div>
             <div class="field">
               <label for="division">Which division is this about?</label>
               <select id="division" name="division" required>
@@ -238,80 +188,56 @@
               </select>
             </div>
           </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-          </div>
-          <button type="submit" class="submit-btn">Send inquiry</button>
-          <div class="form-note">// This form needs a backend handler (e.g. Formspree, PHP mailer, or WordPress plugin) wired to the action attribute before launch.</div>
+          <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+          <button type="submit" class="submit-btn">Send inquiry →</button>
+          <div class="form-note">This form needs a backend handler (e.g. Formspree, PHP mailer, or WordPress plugin) wired to the action attribute before launch.</div>
         </form>
       </div>
 
-      <div class="panel hud">
-        <span class="c1"></span><span class="c2"></span>
-        <span class="panel-label">// Reach us directly</span>
+      <div class="reveal">
+        <span class="form-label">Reach us directly</span>
 
         <div class="info-block">
-          <div class="ib-label">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-            Office address
-          </div>
+          <div class="ib-label">Office address</div>
           <div class="ib-value">[Office Address, City, Philippines]</div>
         </div>
-
         <div class="divider"></div>
 
         <div class="info-block">
-          <div class="ib-label">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M6 3h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2 2C11 20 4 13 4 5a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-            Phone numbers
-          </div>
+          <div class="ib-label">Phone numbers</div>
           <div class="phone-list">
-            <div class="row"><span class="k">GENERAL</span><span class="v">[Phone Number]</span></div>
-            <div class="row"><span class="k">REAL ESTATE</span><span class="v">[Phone Number]</span></div>
-            <div class="row"><span class="k">ACCOUNTING</span><span class="v">[Phone Number]</span></div>
-            <div class="row"><span class="k">CYBERSECURITY</span><span class="v">[Phone Number]</span></div>
+            <div class="row"><span class="k">General</span><span class="v">[Phone Number]</span></div>
+            <div class="row"><span class="k">Real Estate</span><span class="v">[Phone Number]</span></div>
+            <div class="row"><span class="k">Accounting</span><span class="v">[Phone Number]</span></div>
+            <div class="row"><span class="k">Cybersecurity</span><span class="v">[Phone Number]</span></div>
           </div>
         </div>
-
         <div class="divider"></div>
 
         <div class="info-block">
-          <div class="ib-label">
-            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="1" stroke="currentColor" stroke-width="1.6"/><path d="M3 6l9 7 9-7" stroke="currentColor" stroke-width="1.6"/></svg>
-            Email address
-          </div>
-          <div class="ib-value mono">[email@crestaola.com]</div>
+          <div class="ib-label">Email address</div>
+          <div class="ib-value">[email@crestaola.com]</div>
         </div>
-
         <div class="divider"></div>
 
         <div class="info-block">
-          <div class="ib-label">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-            Business hours
-          </div>
+          <div class="ib-label">Business hours</div>
           <div class="hours-table">
-            <div class="row"><span class="k">MON — FRI</span><span class="v">[9:00 AM – 6:00 PM]</span></div>
-            <div class="row"><span class="k">SATURDAY</span><span class="v">[By appointment]</span></div>
-            <div class="row"><span class="k">SUNDAY</span><span class="v">Closed</span></div>
+            <div class="row"><span class="k">Mon – Fri</span><span class="v">[9:00 AM – 6:00 PM]</span></div>
+            <div class="row"><span class="k">Saturday</span><span class="v">[By appointment]</span></div>
+            <div class="row"><span class="k">Sunday</span><span class="v">Closed</span></div>
           </div>
         </div>
-
         <div class="divider"></div>
 
         <div class="info-block">
-          <div class="ib-label">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 3a12 12 0 0 1 0 18M12 3a12 12 0 0 0 0 18M3 12h18" stroke="currentColor" stroke-width="1.6"/></svg>
-            Follow the group
-          </div>
+          <div class="ib-label">Follow the group</div>
           <div class="social-row">
             <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M7 10v6M7 7.5v.01M11 16v-4a2 2 0 0 1 4 0v4M11 12v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
             <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none"><path d="M15 8h-2a2 2 0 0 0-2 2v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5a.5.5 0 0 1 .5-.5H15V8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></a>
             <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg></a>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -319,14 +245,28 @@
 
 <section class="map-section">
   <div class="wrap">
-    <div class="map-head">
-      <div class="eyebrow"><span class="dot"></span>Find us</div>
+    <div class="map-head reveal">
+      <div class="eyebrow"><span class="rule"></span>Find us</div>
       <h2>Office location.</h2>
     </div>
-    <div class="map-frame hud">
-      <span class="c1"></span><span class="c2"></span>
+    <div class="map-frame reveal">
       <svg class="pin" viewBox="0 0 24 24" fill="none"><path d="M12 2C7.5 2 4 5.5 4 10c0 6 8 12 8 12s8-6 8-12c0-4.5-3.5-8-8-8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.6"/></svg>
-      <div class="readout">MAP PREVIEW — PENDING OFFICE ADDRESS CONFIRMATION<br>Replace with an embedded Google Maps <strong>&lt;iframe&gt;</strong> once the address is finalized.</div>
+      <div class="readout"><strong>Map preview — pending office address confirmation.</strong><br>Replace with an embedded Google Maps &lt;iframe&gt; once the address is finalized.</div>
+    </div>
+  </div>
+</section>
+
+<section class="footer-newsletter">
+  <div class="wrap">
+    <div class="fn-row reveal">
+      <div class="fn-copy">
+        <h3>Stay in the loop</h3>
+        <p>Occasional updates from across the group — new services, market notes, and security advisories.</p>
+      </div>
+      <form class="fn-form" action="#" method="POST">
+        <input type="email" placeholder="Email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
     </div>
   </div>
 </section>
@@ -342,10 +282,35 @@
   </div>
 </footer>
 
+<div class="cookie-banner" id="cookieBanner">
+  <p>We use cookies to improve your experience on this site and understand how it's used. You can accept or decline non-essential cookies.</p>
+  <div class="cb-actions">
+    <button class="cb-btn" id="cbReject">Reject</button>
+    <button class="cb-btn primary" id="cbAccept">Accept all</button>
+  </div>
+</div>
+
 <script>
   const toggle = document.getElementById('menuToggle');
   const links = document.getElementById('navLinks');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('in-view'), i % 4 * 60);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  const cookieBanner = document.getElementById('cookieBanner');
+  setTimeout(() => cookieBanner.classList.add('show'), 800);
+  const dismissCookieBanner = () => cookieBanner.classList.remove('show');
+  document.getElementById('cbAccept').addEventListener('click', dismissCookieBanner);
+  document.getElementById('cbReject').addEventListener('click', dismissCookieBanner);
 </script>
 
 </body>
