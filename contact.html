@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --white:#0B0F0D; --band:#141A17; --ink:#F2F5F1; --ink-dim:#9AA69E; --ink-faint:#62706A;
-    --blue:#3654D6; --gold:#D9AE55; --line:rgba(242,245,241,0.10); --line-strong:rgba(242,245,241,0.18);
+    --white:#FFFFFF; --band:#F2F2F2; --ink:#000000; --ink-dim:#5C5C5C; --ink-faint:#A3A3A3;
+    --blue:#001F3F; --gold:#C5A059; --line:rgba(0,0,0,0.10); --line-strong:rgba(0,0,0,0.18);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -31,7 +31,7 @@
   .eyebrow{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--blue);}
   .eyebrow .rule{width:26px;height:1.5px;background:var(--blue);display:inline-block;flex-shrink:0;}
 
-  header{position:sticky;top:0;z-index:50;background:rgba(11,15,13,0.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
   nav{display:flex;align-items:center;justify-content:space-between;padding:22px 40px;max-width:1180px;margin:0 auto;}
   .logo{display:flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.01em;color:var(--ink);}
   .logo svg{width:24px;height:24px;flex-shrink:0;}
@@ -42,14 +42,15 @@
   .nav-links a:hover::after,.nav-links a.current::after{right:0;}
   .nav-cta{background:var(--ink);color:var(--white)!important;padding:11px 22px;border-radius:2px;font-weight:600;font-size:13.5px;transition:background .2s ease,transform .2s ease,box-shadow .2s ease;}
   .nav-cta::after{display:none;}
-  .nav-cta:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 8px 20px rgba(54,84,214,0.35);}
+  .nav-cta:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,31,63,0.35);}
   .menu-toggle{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);}
 
-  .page-hero{padding:130px 0 70px;text-align:center;}
-  .page-hero .eyebrow{justify-content:center;}
-  .page-hero h1{font-size:clamp(36px,5.2vw,60px);max-width:18ch;margin:24px auto 24px;}
-  .page-hero em{font-style:normal;background:linear-gradient(100deg,var(--blue) 20%,var(--gold) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .page-hero p{font-size:18px;color:var(--ink-dim);max-width:60ch;margin:0 auto;}
+  .page-hero{padding:130px 0 70px;text-align:center;background:var(--blue);}
+  .page-hero .eyebrow{justify-content:center;color:var(--gold);}
+  .page-hero .eyebrow .rule{background:var(--gold);}
+  .page-hero h1{font-size:clamp(36px,5.2vw,60px);max-width:18ch;margin:24px auto 24px;color:#FFFFFF;}
+  .page-hero em{font-style:normal;background:linear-gradient(100deg,#FFFFFF 20%,var(--gold) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .page-hero p{font-size:18px;color:rgba(255,255,255,0.72);max-width:60ch;margin:0 auto;}
 
   .contact-main{padding:80px 0 110px;border-top:1px solid var(--line);}
   .contact-grid{display:grid;grid-template-columns:1.25fr 0.75fr;gap:80px;align-items:start;}
@@ -64,7 +65,7 @@
     padding:10px 2px;font-family:'Inter',sans-serif;font-size:15px;outline:none;
     transition:border-color .2s ease;
   }
-  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 4px 12px -6px rgba(54,84,214,0.5);}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 4px 12px -6px rgba(0,31,63,0.5);}
   .field textarea{resize:vertical;min-height:110px;}
   .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239AA69E' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 2px center;background-size:16px;}
   .submit-btn{
@@ -72,7 +73,7 @@
     font-size:14.5px;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif;
     transition:background .2s ease,transform .2s ease,box-shadow .2s ease;align-self:flex-start;
   }
-  .submit-btn:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 10px 26px rgba(54,84,214,0.4);}
+  .submit-btn:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,31,63,0.4);}
   .form-note{font-size:12.5px;color:var(--ink-faint);margin-top:-10px;}
 
   .info-block{margin-bottom:34px;}
@@ -93,13 +94,15 @@
   .social-row a:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-3px);}
   .social-row svg{width:16px;height:16px;}
 
-  .map-section{padding:100px 0;border-top:1px solid var(--line);}
+  .map-section{padding:100px 0;border-top:none;background:var(--blue);}
   .map-head{max-width:56ch;margin-bottom:40px;}
-  .map-head h2{font-size:clamp(26px,3.2vw,36px);margin-top:20px;}
-  .map-frame{position:relative;height:340px;background:var(--band);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;border:1px solid var(--line);}
-  .map-frame .pin{width:30px;height:30px;color:var(--blue);}
-  .map-frame .readout{font-size:13px;color:var(--ink-faint);text-align:center;max-width:44ch;}
-  .map-frame .readout strong{color:var(--gold);}
+  .map-head h2{font-size:clamp(26px,3.2vw,36px);margin-top:20px;color:#FFFFFF;}
+  .map-head .eyebrow{color:var(--gold);}
+  .map-head .eyebrow .rule{background:var(--gold);}
+  .map-frame{position:relative;height:340px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;border:1px solid rgba(255,255,255,0.18);}
+  .map-frame .pin{width:30px;height:30px;color:var(--gold);}
+  .map-frame .readout{font-size:13px;color:rgba(255,255,255,0.6);text-align:center;max-width:44ch;}
+  .map-frame .readout strong{color:#FFFFFF;}
 
   footer{padding:56px 0;border-top:1px solid var(--line);}
   footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
@@ -143,7 +146,7 @@
 <header>
   <nav>
     <a href="index.html" class="logo">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,6 87,28 87,72 50,94 13,72 13,28" fill="none" stroke="#3654D6" stroke-width="6"/></svg>
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,6 87,28 87,72 50,94 13,72 13,28" fill="none" stroke="#001F3F" stroke-width="6"/></svg>
       Cresta Ola
     </a>
     <div class="nav-links" id="navLinks">
